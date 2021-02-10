@@ -23,16 +23,19 @@ div p {
 	margin: 0px;
 }
 
-div p:hover {
-	background-color: #BCD4FDAA;
-	/*color: rgba(0, 0, 0, 0.5);*/
+#optional_output p {
+	width: 980px;
 }
 
-#red {
+#required_output p {
+	width: 590px;
+}
+
+.red {
 	color: red;
 }
 
-#green {
+.green {
 	color: green;
 }
 
@@ -54,8 +57,6 @@ div p:hover {
 }
 
 #required_output {
-	/*display: flex;
-	flex-direction: column;*/
 	line-height: 0.8;
 	padding-top: 20px;
 }

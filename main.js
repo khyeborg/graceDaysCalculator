@@ -120,15 +120,15 @@ submitButton.onclick = function(event) {
 			let deduct = i + 1;
 
 			if (deduct <= 1) {
-				tempOutput.innerHTML += " ---> DEDUCT &nbsp;<span id='red'>" + deduct + "</span> GRACE DAY";
+				tempOutput.innerHTML += " ---> DEDUCT &nbsp;<span class='red'>" + deduct + "</span> GRACE DAY";
 			}
 
 			else if (deduct <= 9) {
-				tempOutput.innerHTML += " ---> DEDUCT &nbsp;<span id='red'>" + deduct + "</span> GRACE DAYS";
+				tempOutput.innerHTML += " ---> DEDUCT &nbsp;<span class='red'>" + deduct + "</span> GRACE DAYS";
 			}
 
 			else {
-				tempOutput.innerHTML += " ---> DEDUCT <span id='red'>" + deduct + "</span> GRACE DAYS";
+				tempOutput.innerHTML += " ---> DEDUCT <span class='red'>" + deduct + "</span> GRACE DAYS";
 			}
 
 			requiredOutputDiv.appendChild(tempOutput);
@@ -142,6 +142,16 @@ submitButton.onclick = function(event) {
 				copyText.select();
 				document.execCommand("copy");
 				copyTextbox.style.display = "none";
+
+				requiredOutputDiv.children[i + 1].style.backgroundColor = "white";
+			}
+
+			requiredOutputDiv.children[i + 1].onmouseover = function() {
+				requiredOutputDiv.children[i + 1].style.backgroundColor = "#BCD4FDAA";
+			}
+
+			requiredOutputDiv.children[i + 1].onmouseout = function() {
+				requiredOutputDiv.children[i + 1].style.backgroundColor = "white";
 			}
 		}
 
@@ -174,27 +184,42 @@ submitButton.onclick = function(event) {
 				let tempOutput2 = document.createElement("p");
 
 				if (numberOfDaysLate <= 1) {
-					tempOutput2.innerHTML += "<span id='red'>" + numberOfDaysLate + "</span> " + "DAY LATE ---> DEDUCT <span id='red'>" + numberOfDaysLate + "</span> GRACE DAY";
+					tempOutput2.innerHTML += "<span class='red'>" + numberOfDaysLate + "</span> " + "DAY LATE ---> DEDUCT <span class='red'>" + numberOfDaysLate + "</span> GRACE DAY";
 				}
 
 				else if (numberOfDaysLate <= 10) {
-					tempOutput2.innerHTML += "<span id='red'>" + numberOfDaysLate + "</span> " + "DAYS LATE ---> DEDUCT <span id='red'>" + numberOfDaysLate + "</span> GRACE DAYS";
+					tempOutput2.innerHTML += "<span class='red'>" + numberOfDaysLate + "</span> " + "DAYS LATE ---> DEDUCT <span class='red'>" + numberOfDaysLate + "</span> GRACE DAYS";
 				}
 
 				else {
-					tempOutput2.innerHTML += "<span id='red'>" + numberOfDaysLate + "</span> " + "DAYS LATE (MORE THAN 10 DAYS LATE) ---> <span id='red'>SUBMISSION NOT ACCEPTED</span>";
+					tempOutput2.innerHTML += "<span class='red'>" + numberOfDaysLate + "</span> " + "DAYS LATE (MORE THAN 10 DAYS LATE) ---> <span class='red'>SUBMISSION NOT ACCEPTED</span>";
 				}
 				
 				optionalOutputDiv.appendChild(tempOutput2);
 
 				// copy to clipboard stuff
-				optionalOutputDiv.children[0].onclick = function() {
-					copyTextbox.style.display = "inline";
-					let copyText2 = copyTextbox;
-					copyText2.value = numberOfDaysLate;
-					copyText2.select();
-					document.execCommand("copy");
-					copyTextbox.style.display = "none";
+				if (numberOfDaysLate <= 10) {
+					optionalOutputDiv.children[0].onclick = function() {
+						copyTextbox.style.display = "inline";
+						let copyText2 = copyTextbox;
+						copyText2.value = numberOfDaysLate;
+						copyText2.select();
+						document.execCommand("copy");
+						copyTextbox.style.display = "none";
+
+						optionalOutputDiv.children[0].style.width = "980px";
+						optionalOutputDiv.children[0].style.backgroundColor = "white";
+					}
+
+					optionalOutputDiv.children[0].onmouseover = function() {
+						optionalOutputDiv.children[0].style.width = "590px";
+						optionalOutputDiv.children[0].style.backgroundColor = "#BCD4FDAA";
+					}
+
+					optionalOutputDiv.children[0].onmouseout = function() {
+						optionalOutputDiv.children[0].style.width = "980px";
+						optionalOutputDiv.children[0].style.backgroundColor = "white";
+					}
 				}
 			}
 
@@ -211,7 +236,7 @@ submitButton.onclick = function(event) {
 	// invalid date
 	else {
 		let temph1 = document.createElement("h1");
-		temph1.innerHTML = "<span id='red'>INVALID DATE</span>";
+		temph1.innerHTML = "<span class='red'>INVALID DATE</span>";
 		requiredOutputDiv.appendChild(temph1);
 	}
 }
