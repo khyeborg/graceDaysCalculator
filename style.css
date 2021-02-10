@@ -1,0 +1,65 @@
+body {
+	font-family: Consolas, monaco, monospace;
+	margin: 50px;
+	margin-top: 30px;
+}
+
+select, button {
+	font-size: 15px;
+	font-family: Consolas, monaco, monospace;
+}
+
+p {
+	margin-bottom: 0px;
+}
+
+h2 {
+	margin-bottom: 10px;
+}
+
+div p {
+	width: 590px;
+	padding: 12px 20px;
+	margin: 0px;
+}
+
+div p:hover {
+	background-color: #BCD4FDAA;
+	/*color: rgba(0, 0, 0, 0.5);*/
+}
+
+#red {
+	color: red;
+}
+
+#green {
+	color: green;
+}
+
+#special_br {
+	height: 5px;
+}
+
+#button_div {
+	width: 630px;
+	display: flex;
+	justify-content: flex-end;
+}
+
+#optional_output {
+	display: none;
+	font-size: 24px;
+	font-weight: bold;
+	padding-top: 20px;
+}
+
+#required_output {
+	/*display: flex;
+	flex-direction: column;*/
+	line-height: 0.8;
+	padding-top: 20px;
+}
+
+#copy_textbox {
+	display: none;
+}
