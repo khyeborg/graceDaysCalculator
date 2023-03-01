@@ -10,7 +10,7 @@ let dueArray = [];
 let submissionArray = [];
 let dueDate;
 let submissionDate;
-let numberOfGraceDays = 10;
+let numberOfGraceDays = 7;
 let numberOfSecondsPerDay = 86400;
 let tenDaysAfterDueArray = [];
 let officialTenDaysAfterDueArray = [];
@@ -79,7 +79,16 @@ submitButton.onclick = function(event) {
 			tempArray.push(String(tenDaysAfterDueArray[i].getFullYear()));
 			tempArray.push(String(tenDaysAfterDueArray[i].getMonth()));
 			tempArray.push(String(tenDaysAfterDueArray[i].getDate()));
-			tempArray.push(String(tenDaysAfterDueArray[i].getHours()));
+
+			// 12-hour format
+			if (tenDaysAfterDueArray[i].getHours() > 12) {
+				tempArray.push(String(tenDaysAfterDueArray[i].getHours() - 12));
+			}
+
+			else {
+				tempArray.push(String(tenDaysAfterDueArray[i].getHours()));
+			}
+			
 			tempArray.push(String(tenDaysAfterDueArray[i].getMinutes()));
 			tempArray.push(String(0));
 			tempArray.push(String(0));
@@ -89,7 +98,7 @@ submitButton.onclick = function(event) {
 
 		// output
 		let temph2 = document.createElement("h2");
-		temph2.innerHTML = "Grace Day Chart";
+		temph2.innerHTML = "Grace Days Chart";
 		requiredOutputDiv.appendChild(temph2);
 
 		for (let i = 0; i < officialTenDaysAfterDueArray.length; i++) {
@@ -187,18 +196,18 @@ submitButton.onclick = function(event) {
 					tempOutput2.innerHTML += "<span class='red'>" + numberOfDaysLate + "</span> " + "DAY LATE ---> DEDUCT <span class='red'>" + numberOfDaysLate + "</span> GRACE DAY";
 				}
 
-				else if (numberOfDaysLate <= 10) {
+				else if (numberOfDaysLate <= 7) {
 					tempOutput2.innerHTML += "<span class='red'>" + numberOfDaysLate + "</span> " + "DAYS LATE ---> DEDUCT <span class='red'>" + numberOfDaysLate + "</span> GRACE DAYS";
 				}
 
 				else {
-					tempOutput2.innerHTML += "<span class='red'>" + numberOfDaysLate + "</span> " + "DAYS LATE (MORE THAN 10 DAYS LATE) ---> <span class='red'>SUBMISSION NOT ACCEPTED</span>";
+					tempOutput2.innerHTML += "<span class='red'>" + numberOfDaysLate + "</span> " + "DAYS LATE (MORE THAN 7 DAYS LATE) ---> <span class='red'>SUBMISSION NOT ACCEPTED</span>";
 				}
 				
 				optionalOutputDiv.appendChild(tempOutput2);
 
 				// copy to clipboard stuff
-				if (numberOfDaysLate <= 10) {
+				if (numberOfDaysLate <= 7) {
 					optionalOutputDiv.children[0].onclick = function() {
 						copyTextbox.style.display = "inline";
 						let copyText2 = copyTextbox;

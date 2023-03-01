@@ -4,15 +4,15 @@
         <link rel="stylesheet" href="style.css">
         <script src="main.js" defer></script>
         <meta charset="UTF-8">
-        <title>Grace Day Calculator</title>
+        <title>Grace Days Calculator</title>
     </head>
     <body>
-    	<h1>Grace Day Calculator</h1>
+    	<h1>Grace Days Calculator</h1>
 
     	<form>
 	        <span class="red">(REQUIRED)</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Due Date: 
 	        <select class="user_input" id="year">
-			  <option value="2021">2021</option>
+			  <option value="2023">2023</option>
 			</select>
 
 	        <select class="user_input" id="month">
@@ -69,13 +69,13 @@
 			<select class="user_input" id="hour">
 			  <option value="1">1</option>
 			  <option value="2">2</option>
-			  <option value="3">3</option>
+			  <option value="3" selected>3</option>
 			  <option value="4">4</option>
 			  <option value="5">5</option>
 			  <option value="6">6</option>
 			  <option value="7">7</option>
 			  <option value="8">8</option>
-			  <option value="9" selected>9</option>
+			  <option value="9">9</option>
 			  <option value="10">10</option>
 			  <option value="11">11</option>
 			  <option value="12">12</option>
@@ -98,14 +98,14 @@
 
 			<select class="user_input" id="am_pm">
 			  <option value="AM">AM</option>
-			  <option value="PM">PM</option>
+			  <option value="PM" selected>PM</option>
 			</select>
 
 			<br><br>
 
 			<span class="green">(OPTIONAL)</span> Submission Date: 
 	        <select class="optional_user_input" id="optional_year">
-			  <option value="2021">2021</option>
+			  <option value="2023">2023</option>
 			</select>
 
 	        <select class="optional_user_input" id="optional_month">
@@ -243,7 +243,7 @@
 
 			<select class="optional_user_input" id="optional_am_pm">
 			  <option value="AM">AM</option>
-			  <option value="PM">PM</option>
+			  <option value="PM" selected>PM</option>
 			</select>
 
 			<p id="special_p"><p>
