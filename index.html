@@ -12,10 +12,11 @@
     	<form>
 	        <span class="red">(REQUIRED)</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Due Date: 
 	        <select class="user_input" id="year">
-			  <option value="2023">2023</option>
+			  <option id="year_inner"></option>
 			</select>
 
 	        <select class="user_input" id="month">
+	          <option value="null" selected></option>
 			  <option value="0">Jan</option>
 			  <option value="1">Feb</option>
 			  <option value="2">Mar</option>
@@ -31,6 +32,7 @@
 			</select>
 
 			<select class="user_input" id="day">
+			  <option value="null" selected></option>
 			  <option value="1">1</option>
 			  <option value="2">2</option>
 			  <option value="3">3</option>
@@ -105,7 +107,7 @@
 
 			<span class="green">(OPTIONAL)</span> Submission Date: 
 	        <select class="optional_user_input" id="optional_year">
-			  <option value="2023">2023</option>
+			  <option id="optional_year_inner"></option>
 			</select>
 
 	        <select class="optional_user_input" id="optional_month">

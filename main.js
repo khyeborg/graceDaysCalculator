@@ -1,4 +1,7 @@
 // get references
+let yearInner = document.getElementById("year_inner");
+let optionalYearInner = document.getElementById("optional_year_inner");
+
 let submitButton = document.getElementById("submit_button");
 let userInputArray = document.getElementsByClassName("user_input");
 let optionalUserInputArray = document.getElementsByClassName("optional_user_input");
@@ -12,9 +15,17 @@ let dueDate;
 let submissionDate;
 let numberOfGraceDays = 7;
 let numberOfSecondsPerDay = 86400;
-let tenDaysAfterDueArray = [];
-let officialTenDaysAfterDueArray = [];
+let sevenDaysAfterDueArray = [];
+let officialSevenDaysAfterDueArray = [];
 let monthsArray = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec",];
+
+// set dates to the current date
+currentYear = new Date().getFullYear();
+yearInner.innerHTML = currentYear;
+yearInner.value = currentYear;
+
+optionalYearInner.innerHTML = currentYear;
+optionalYearInner.value = currentYear;
 
 submitButton.onclick = function(event) {
 	event.preventDefault();
@@ -24,8 +35,8 @@ submitButton.onclick = function(event) {
 	optionalOutputDiv.innerHTML = "";
 	dueArray = [];
 	submissionArray = [];
-	tenDaysAfterDueArray = [];
-	officialTenDaysAfterDueArray = [];
+	sevenDaysAfterDueArray = [];
+	officialSevenDaysAfterDueArray = [];
 
 	// get user input
 	for (let i = 0; i < userInputArray.length - 1; i++) {
@@ -65,34 +76,34 @@ submitButton.onclick = function(event) {
 		//                        year        month          day         hour       minute
 		dueDate = new Date(dueArray[0], dueArray[1], dueArray[2], dueArray[3], dueArray[4], 0, 0);
 
-		// generate timestamps for up to 10 days after due date
+		// generate timestamps for up to 7 days after due date
 		for (let i = 0; i < numberOfGraceDays; i++) {
 			let tempTime = dueDate.getTime() + (numberOfSecondsPerDay * 1000 * (i + 1)) ;
 			let tempDateObject = new Date();
 			tempDateObject.setTime(tempTime);
-			tenDaysAfterDueArray.push(tempDateObject);
+			sevenDaysAfterDueArray.push(tempDateObject);
 		}
 
-		// generate dates for up to 10 days after due date
-		for (let i = 0; i < tenDaysAfterDueArray.length; i++) {
+		// generate dates for up to 7 days after due date
+		for (let i = 0; i < sevenDaysAfterDueArray.length; i++) {
 			let tempArray = [];
-			tempArray.push(String(tenDaysAfterDueArray[i].getFullYear()));
-			tempArray.push(String(tenDaysAfterDueArray[i].getMonth()));
-			tempArray.push(String(tenDaysAfterDueArray[i].getDate()));
+			tempArray.push(String(sevenDaysAfterDueArray[i].getFullYear()));
+			tempArray.push(String(sevenDaysAfterDueArray[i].getMonth()));
+			tempArray.push(String(sevenDaysAfterDueArray[i].getDate()));
 
 			// 12-hour format
-			if (tenDaysAfterDueArray[i].getHours() > 12) {
-				tempArray.push(String(tenDaysAfterDueArray[i].getHours() - 12));
+			if (sevenDaysAfterDueArray[i].getHours() > 12) {
+				tempArray.push(String(sevenDaysAfterDueArray[i].getHours() - 12));
 			}
 
 			else {
-				tempArray.push(String(tenDaysAfterDueArray[i].getHours()));
+				tempArray.push(String(sevenDaysAfterDueArray[i].getHours()));
 			}
 			
-			tempArray.push(String(tenDaysAfterDueArray[i].getMinutes()));
+			tempArray.push(String(sevenDaysAfterDueArray[i].getMinutes()));
 			tempArray.push(String(0));
 			tempArray.push(String(0));
-			officialTenDaysAfterDueArray.push(tempArray);
+			officialSevenDaysAfterDueArray.push(tempArray);
 		}
 
 
@@ -101,29 +112,29 @@ submitButton.onclick = function(event) {
 		temph2.innerHTML = "Grace Days Chart";
 		requiredOutputDiv.appendChild(temph2);
 
-		for (let i = 0; i < officialTenDaysAfterDueArray.length; i++) {
+		for (let i = 0; i < officialSevenDaysAfterDueArray.length; i++) {
 			let tempOutput = document.createElement("p");
 
 			tempOutput.innerHTML += "SUBMIT BEFORE&nbsp;&nbsp;&nbsp;";
-			tempOutput.innerHTML += monthsArray[officialTenDaysAfterDueArray[i][1]] + " ";
+			tempOutput.innerHTML += monthsArray[officialSevenDaysAfterDueArray[i][1]] + " ";
 			
-			if (officialTenDaysAfterDueArray[i][2].length == 1) {
-				tempOutput.innerHTML += "&nbsp;" + officialTenDaysAfterDueArray[i][2] + " ";
+			if (officialSevenDaysAfterDueArray[i][2].length == 1) {
+				tempOutput.innerHTML += "&nbsp;" + officialSevenDaysAfterDueArray[i][2] + " ";
 			}
 
 			else {
-				tempOutput.innerHTML += officialTenDaysAfterDueArray[i][2] + " ";
+				tempOutput.innerHTML += officialSevenDaysAfterDueArray[i][2] + " ";
 			} 
 
-			if (officialTenDaysAfterDueArray[i][3].length == 1) {
-				tempOutput.innerHTML += "&nbsp;" + officialTenDaysAfterDueArray[i][3] + ":";
+			if (officialSevenDaysAfterDueArray[i][3].length == 1) {
+				tempOutput.innerHTML += "&nbsp;" + officialSevenDaysAfterDueArray[i][3] + ":";
 			}
 
 			else {
-				tempOutput.innerHTML += officialTenDaysAfterDueArray[i][3] + ":";
+				tempOutput.innerHTML += officialSevenDaysAfterDueArray[i][3] + ":";
 			} 
 
-			tempOutput.innerHTML += officialTenDaysAfterDueArray[i][4] + " " + dueArray[userInputArray.length - 1];
+			tempOutput.innerHTML += officialSevenDaysAfterDueArray[i][4] + " " + dueArray[userInputArray.length - 1];
 
 			// number of grace days to deduct
 			let deduct = i + 1;
