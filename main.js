@@ -259,12 +259,32 @@ submitButton.onclick = function(event) {
 			}
 
 		}
+
+		// invalid submission date
+		else {
+			if (submissionDateBoolean == true) {
+				optionalOutputDiv.style.display = "block";
+				let tempOutput2 = document.createElement("p");
+				tempOutput2.innerHTML = "<span class='red'>INVALID SUBMISSION DATE</span>";
+				optionalOutputDiv.appendChild(tempOutput2);
+			}
+		}
 	}
 
 	// invalid date
 	else {
 		let temph1 = document.createElement("h1");
-		temph1.innerHTML = "<span class='red'>MISSING / INVALID DATE</span>";
+
+		// missing due date
+		if (isNaN(dueArray[1]) || isNaN(dueArray[2])) {
+			temph1.innerHTML = "<span class='red'>MISSING DUE DATE</span>";
+		}
+
+		// invalid due date
+		else {
+			temph1.innerHTML = "<span class='red'>INVALID DUE DATE</span>";
+		}
+
 		requiredOutputDiv.appendChild(temph1);
 	}
 }
