@@ -92,15 +92,23 @@ submitButton.onclick = function(event) {
 			tempArray.push(String(sevenDaysAfterDueArray[i].getDate()));
 
 			// 12-hour format
+			// force hour to always be the same as the initial hour input (to account for daylight savings)
 			if (sevenDaysAfterDueArray[i].getHours() > 12) {
-				tempArray.push(String(sevenDaysAfterDueArray[i].getHours() - 12));
+				tempArray.push(String(dueArray[3] - 12));
 			}
 
 			else {
-				tempArray.push(String(sevenDaysAfterDueArray[i].getHours()));
+				tempArray.push(String(dueArray[3]));
 			}
 			
-			tempArray.push(String(sevenDaysAfterDueArray[i].getMinutes()));
+			if (sevenDaysAfterDueArray[i].getMinutes() < 10) {
+				tempArray.push("0" + String(sevenDaysAfterDueArray[i].getMinutes()));
+			}
+
+			else {
+				tempArray.push(String(sevenDaysAfterDueArray[i].getMinutes()));
+			}		
+
 			tempArray.push(String(0));
 			tempArray.push(String(0));
 			officialSevenDaysAfterDueArray.push(tempArray);
@@ -256,12 +264,17 @@ submitButton.onclick = function(event) {
 	// invalid date
 	else {
 		let temph1 = document.createElement("h1");
-		temph1.innerHTML = "<span class='red'>INVALID DATE</span>";
+		temph1.innerHTML = "<span class='red'>MISSING / INVALID DATE</span>";
 		requiredOutputDiv.appendChild(temph1);
 	}
 }
 
 function validateDate(arr) {
+	// if any entries is empty
+	if (isNaN(arr[1]) || isNaN(arr[2])) {
+		return false;
+	}
+
 	// if month is feb
 	if (arr[1] == 1) {
 		// if it is a leap year
