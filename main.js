@@ -65,7 +65,7 @@ submitButton.onclick = function(event) {
 		// get AM / PM and adjust hour accordingly
 		dueArray[userInputArray.length - 1] = userInputArray[userInputArray.length - 1].value;
 
-		if (dueArray[userInputArray.length - 1] == "PM") {
+		if (dueArray[userInputArray.length - 1] == "PM" && dueArray[3] != 12) {
 			dueArray[3] += 12;
 		}
 
@@ -190,7 +190,7 @@ submitButton.onclick = function(event) {
 			// get AM / PM and adjust hour accordingly
 			submissionArray[optionalUserInputArray.length - 1] = optionalUserInputArray[optionalUserInputArray.length - 1].value;
 
-			if (submissionArray[optionalUserInputArray.length - 1] == "PM") {
+			if (submissionArray[optionalUserInputArray.length - 1] == "PM" && submissionArray[3] != 12) {
 				submissionArray[3] += 12;
 			}
 
